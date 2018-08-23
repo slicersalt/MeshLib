@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 11)
+
 project(MeshLib VERSION "1.0.0")
 
 # Set a default build type if none was specified
@@ -22,9 +25,10 @@ set(SRC_FILES
   src/MNIObjIO.cpp
   src/VtkIO.cpp
   )
-set(SRC_UTIL_FILES 
+set(SRC_UTIL_FILES
   src/Util/Geom.cpp
   src/Util/AABB.cpp
+  src/Util/AABB_Sphere.cpp
   src/Util/Slicer.cpp
   src/Util/SphericalHarmonics.cpp
   src/Util/SurfaceUtil.cpp
@@ -32,6 +36,7 @@ set(SRC_UTIL_FILES
 set(SRC_GEOD_FILES
 	src/Geodesic/Geodesic.cpp
 	src/Geodesic/GeodesicA.cpp
+	src/Geodesic/GeodesicPath.cpp
 	src/Geodesic/gw/gw_core/GW_Config.cpp
 	src/Geodesic/gw/gw_core/GW_FaceIterator.cpp
 	src/Geodesic/gw/gw_core/GW_SmartCounter.cpp

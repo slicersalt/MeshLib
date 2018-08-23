@@ -34,6 +34,7 @@
 #include <string>
 
 #include "Geodesic.h"
+
 Geodesic::Geodesic(const Mesh *mesh)
 {
 	nverts = -1;

@@ -6,7 +6,7 @@
 *
 *	University of North Carolina at Chapel Hill
 *	Department of Computer Science
-*
+*	
 *	Ilwoo Lyu, ilwoolyu@cs.unc.edu
 *************************************************/
 
@@ -134,8 +134,9 @@ public:
 	void unit(void);
 	void rotation(const float *axis, float theta);
 	void rotation(const float *axis, float theta, float *v);
-	const int nFace(void) const;
-	const int nVertex(void) const;
+	void setMesh(const float *vertex, const int *face, const float *normal, int nVertex, int nFace, int nNormal, bool hasNormal);
+	int nFace(void) const;
+	int nVertex(void) const;
 	const Face **face(void) const;
 	const Face *face(const int index) const;
 	const Vertex **vertex(void) const;
@@ -145,7 +146,7 @@ public:
 
 private:
 	void connectivity(void);
-
+	
 private:
 	int m_nVertex;
 	int m_nFace;

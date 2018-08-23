@@ -192,7 +192,6 @@ void GeodesicA::setupMesh(const Mesh *mesh)
 	varea = new double[mesh->nVertex()];
 	for (int i = 0; i < mesh->nVertex(); i++)
 		varea[i] = vertexArea(mesh, i);
-
 	// arg1 : vertex
 	nverts = mesh->nVertex();
 	// arg2 : faces
