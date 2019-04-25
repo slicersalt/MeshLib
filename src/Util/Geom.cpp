@@ -942,7 +942,7 @@ void Statistics::cov(float *p, int n, int dim, float *M)
 		}
 	}
 
-	delete m;
+	delete [] m;
 }
 void Statistics::cov_trans(float *p, int n, int dim, float *M)
 {
@@ -969,7 +969,7 @@ void Statistics::cov_trans(float *p, int n, int dim, float *M)
 		}
 	}
 
-	delete m;
+	delete [] m;
 }
 void Statistics::wcov_trans(float *p, int n, int dim, float *M, float *w)
 {
@@ -996,7 +996,7 @@ void Statistics::wcov_trans(float *p, int n, int dim, float *M, float *w)
 		}
 	}
 
-	delete m;
+	delete [] m;
 }
 float Statistics::NCC(float *A, float *B, int n)
 {
