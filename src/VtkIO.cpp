@@ -12,8 +12,13 @@
 
 #include "VtkIO.h"
 #include "fstream"
+#include "sstream"
 #include "string.h"
 #include "stdlib.h"
+
+#include "vtkPolyDataReader.h"
+#include "vtkPolyDataWriter.h"
+#include "vtkNew.h"
 
 using namespace std;
 
@@ -32,13 +37,27 @@ VtkIO::~VtkIO(void)
 
 void VtkIO::read(const char *filename)
 {
+	// So this code is setup to .vtk files from the 4.2 format.
+	// As VTK has evolved and update to newer .vtk formats, this code has not.
+	// To rectify this, we are converting a .vtk from any file format version to
+	// the 4.2 version.
+	vtkNew<vtkPolyDataReader> reader;
+	reader->SetFileName(filename);
+	reader->Update();
+	vtkNew<vtkPolyDataWriter> writer;
+	writer->SetInputConnection(reader->GetOutputPort());
+	writer->SetFileVersion(42);
+	writer->WriteToOutputStringOn();
+	writer->Write();
+
+	std::stringstream fin(writer->GetOutputString());
+
 	int nVertex = 0;
 	int nFace = 0;
 	int nNormal = 0;
 	int nColor = 0;
 	char buf[255];
 	
-	ifstream fin(filename);
 	while (!fin.eof())
 	{
 		fin.getline(buf, sizeof(buf));
@@ -179,8 +198,6 @@ void VtkIO::read(const char *filename)
 			}
 		}
 	}
-	
-	fin.close();
 }
 
 void VtkIO::save(const char *filename, const Mesh *mesh, bool normal, bool binary)

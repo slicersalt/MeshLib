@@ -13,6 +13,9 @@ endif()
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
+find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
 set(MeshLib_INSTALL_CONFIG_DIR "lib/cmake/Mesh-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}")
 
@@ -62,6 +65,9 @@ target_include_directories(Mesh PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/Util>
   $<INSTALL_INTERFACE:include>
   )
+target_link_libraries(Mesh PRIVATE
+  ${VTK_LIBRARIES}
+)
 
 if(APPLE)
     # use, i.e. don't skip the full RPATH for the build tree
