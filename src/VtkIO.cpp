@@ -46,7 +46,7 @@ void VtkIO::read(const char *filename)
 	reader->Update();
 	vtkNew<vtkPolyDataWriter> writer;
 	writer->SetInputConnection(reader->GetOutputPort());
-//	writer->SetFileVersion(42);
+	writer->SetFileVersion(42);
 	writer->WriteToOutputStringOn();
 	writer->Write();
 
