@@ -66,9 +66,7 @@ target_include_directories(Mesh PUBLIC
   $<INSTALL_INTERFACE:include>
   )
 target_link_libraries(Mesh PRIVATE
-    VTK::CommonCore
-    VTK::IOCore
-    VTK::IOLegacy
+  ${VTK_LIBRARIES}
 )
 
 if(APPLE)
